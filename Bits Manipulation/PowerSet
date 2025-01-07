@@ -1,0 +1,21 @@
+public List<String> AllPossibleStrings(String s)
+    {
+        // Code here
+        List<String> ans = new ArrayList();
+        int totalSet = (int)Math.pow(2,s.length());
+        for(int i=1;i<totalSet;i++){
+            int bitOfi = i;
+            int count=0;
+            StringBuilder sbr = new StringBuilder();
+            while(bitOfi!=0){
+                if((bitOfi&1)==1){
+                    sbr.append(s.charAt(count));
+                }
+                bitOfi = bitOfi>>1;
+                count++;
+            }
+            
+            ans.add(sbr.toString());
+        }
+        return ans;
+    }
