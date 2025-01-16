@@ -1,0 +1,13 @@
+public class PascalsTriangle {  
+    public static void printPascalsTriangle() {
+        int n=5;
+        for (int line = 0; line < n; line++) {  
+            int C = 1; // Binomial coefficient  
+            for (int j = 0; j <= line; j++) {  
+                System.out.print(C + " ");  
+                C = C * (line - j) / (j + 1); // Update C  
+            }  
+            System.out.println();  
+        }  
+    }  
+}
