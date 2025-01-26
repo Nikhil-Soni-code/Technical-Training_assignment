@@ -1,0 +1,44 @@
+class Solution {
+    public void reverseString(char[] s) {
+        Stack<Character> stack = new Stack();
+        for(char ch : s){
+            stack.push(ch);
+        }
+        int i=0;
+        while(!stack.empty()){
+            s[i]=stack.pop();
+            i++;
+        }
+        
+    }
+}
+
+// class Solution {
+//     public void reverse(char[]s,int start,int end){
+//         if(start>=end){
+//             return;
+//         }
+//         char temp=s[start];
+//         s[start]=s[end];
+//         s[end]=temp;
+//         reverse(s,++start,--end);
+
+//     }
+//     public void reverseString(char[] s) {
+//         reverse(s,0,s.length-1);
+//     }
+    
+// }
+
+// class Solution {
+//     public void reverseString(char[] s) {
+//         int beg=0,end=s.length-1;
+//         while(beg<end){
+//             char temp=s[beg];
+//             s[beg]=s[end];
+//             s[end]=temp;
+//             beg++;
+//             end--;
+//         }
+//     }
+// }
