@@ -1,0 +1,92 @@
+/**
+ * Problem: Check if a singly linked list is a palindrome.
+ *
+ * Approach:
+ * - Find the middle of the linked list using the slow and fast pointer technique.
+ * - Reverse the second half of the linked list.
+ * - Compare the two halves of the linked list to check if they are palindromic.
+ *
+ * Time Complexity: O(n), where n is the length of the linked list.
+ * Space Complexity: O(1) (constant extra space).
+ */
+
+class Solution {
+
+    /**
+     * Helper function to reverse a linked list.
+     * 
+     * @param head The head node of the linked list to reverse.
+     * @return The head node of the reversed linked list.
+     */
+    private static Node reverse(Node head) {
+        if (head == null || head.next == null) return head;
+
+        Node prev = null;
+        Node curr = head;
+        Node next = head.next;
+
+        while (curr != null) {
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            if (next != null) {
+                next = next.next;
+            }
+        }
+
+        return prev;
+    }
+
+    /**
+     * Helper function to find the middle of a linked list.
+     * 
+     * @param head The head node of the linked list.
+     * @return The middle node of the linked list.
+     */
+    private static Node middle(Node head) {
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    /**
+     * Function to check whether the linked list is a palindrome.
+     * 
+     * @param head1 The head node of the linked list.
+     * @return True if the linked list is a palindrome, otherwise false.
+     */
+    static boolean isPalindrome(Node head1) {
+        // Find the middle of the linked list and reverse the second half
+        Node head2 = reverse(middle(head1));
+
+        // Compare the two halves
+        while (head1 != null && head2 != null) {
+            if (head1.data != head2.data) {
+                return false;
+            }
+            head1 = head1.next;
+            head2 = head2.next;
+        }
+
+        return true;
+    }
+}
+
+/**
+ * Definition for a Node in the Linked List.
+ */
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
