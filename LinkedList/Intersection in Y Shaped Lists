@@ -1,0 +1,52 @@
+/**
+ * Problem: Find the intersection point of two Y-shaped Linked Lists.
+ *
+ * Approach:
+ * - Use two pointers, starting at the heads of both linked lists.
+ * - Traverse both lists, switching to the other list's head when a pointer reaches the end.
+ * - The intersection point is found when the two pointers meet.
+ *
+ * Time Complexity: O(m + n), where m and n are the lengths of the two linked lists.
+ * Space Complexity: O(1) (constant extra space).
+ */
+
+class Intersect {
+
+    /**
+     * Function to find the intersection point in Y-shaped Linked Lists.
+     * 
+     * @param head1 The head node of the first linked list.
+     * @param head2 The head node of the second linked list.
+     * @return The intersecting node, or null if no intersection exists.
+     */
+    static Node intersectPoint(Node head1, Node head2) {
+        // Initialize two pointers for the two linked lists
+        Node temp1 = head1;
+        Node temp2 = head2;
+
+        // Traverse the lists until the two pointers meet
+        while (temp1 != temp2) {
+            // If the pointer reaches the end of the first list, switch to the head of the second list
+            temp1 = (temp1.next == null) ? head2 : temp1.next;
+            
+            // If the pointer reaches the end of the second list, switch to the head of the first list
+            temp2 = (temp2.next == null) ? head1 : temp2.next;
+        }
+
+        // Return the intersection point (or null if no intersection exists)
+        return temp1;
+    }
+}
+
+/**
+ * Definition for a Node in the Linked List.
+ */
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
