@@ -1,0 +1,70 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class MyStack {
+    Queue<Integer> queue;
+
+    /**
+     * Constructor to initialize the stack using a queue.
+     */
+    public MyStack() {
+        queue = new LinkedList<>();
+    }
+
+    /**
+     * Push an element onto the stack.
+     * The newly added element is rotated to the front to mimic stack behavior.
+     *
+     * @param x the element to be pushed onto the stack.
+     */
+    public void push(int x) {
+        queue.add(x);
+        int size = queue.size();
+        for (int i = 0; i < size - 1; i++) {
+            queue.add(queue.remove());
+        }
+    }
+
+    /**
+     * Removes and returns the top element of the stack.
+     *
+     * @return the top element, or -1 if the stack is empty.
+     */
+    public int pop() {
+        if (queue.isEmpty()) {
+            return -1;
+        }
+        return queue.remove();
+    }
+
+    /**
+     * Retrieves the top element without removing it.
+     *
+     * @return the top element, or -1 if the stack is empty.
+     */
+    public int top() {
+        if (queue.isEmpty()) {
+            return -1;
+        }
+        return queue.peek();
+    }
+
+    /**
+     * Checks whether the stack is empty.
+     *
+     * @return true if the stack is empty, false otherwise.
+     */
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+
+    // Sample test case
+    public static void main(String[] args) {
+        MyStack stack = new MyStack();
+        stack.push(10);
+        stack.push(20);
+        System.out.println("Top Element: " + stack.top()); // Output: 20
+        System.out.println("Popped: " + stack.pop());      // Output: 20
+        System.out.println("Is Stack Empty? " + stack.empty()); // Output: false
+    }
+}
