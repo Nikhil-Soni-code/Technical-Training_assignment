@@ -1,0 +1,32 @@
+/**
+ * This class provides a method to reverse the first k elements of a queue.
+ */
+class GfG {
+    
+    /**
+     * Helper function to reverse the first k elements using recursion.
+     * @param q The queue to be modified.
+     * @param k The number of elements to reverse.
+     */
+    private void reverse(Queue<Integer> q, int k) {
+        if (k == 0) {
+            return;
+        }
+        int top = q.poll();
+        reverse(q, --k);
+        q.offer(top);
+    }
+
+    /**
+     * Function to reverse the first k elements of the queue while keeping the order of the rest unchanged.
+     * @param q The queue to be modified.
+     * @param k The number of elements to reverse.
+     * @return The modified queue.
+     */
+    public Queue<Integer> modifyQueue(Queue<Integer> q, int k) {
+        reverse(q, k);
+        for (int i = 0; i < q.size() - k; i++) {
+            q.offer(q.poll());
+        }
+        return q;
+    }
