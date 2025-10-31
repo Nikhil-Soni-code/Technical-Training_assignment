@@ -1,0 +1,43 @@
+class Solution {
+    public static void mergeSort(int start , int[] nums , int end){
+        if(start==end){
+            return;
+        }
+        int mid=start+(end-start)/2;
+        mergeSort(start,nums,mid);
+        mergeSort(mid+1,nums,end);
+        merge(start,mid,nums,end);
+    }
+    public static void merge(int start,int mid,int[]nums,int end){
+        List list = new ArrayList();
+        int low=start;
+        int right=mid+1;
+        while(low<=mid&&right<=end){
+            if(nums[low]<nums[right]){
+                list.add(nums[low]);
+                low++;
+            }
+            else{
+                list.add(nums[right]);
+                right++;
+            }
+        }
+        while(low<=mid){
+            list.add(nums[low]);
+            low++;
+        }
+        while(right<=end){
+            list.add(nums[right]);
+            right++;
+        }
+        // int index=start;
+        for(int i=start;i<=end;i++){
+            nums[i]=(int)list.get(i-start);
+        }
+    }
+
+    public int[] sortArray(int[] nums) {
+        mergeSort(0,nums,nums.length-1);
+        return nums;
+    }
+}
