@@ -1,0 +1,18 @@
+class Solution {
+    public char getMaxOccuringChar(String s) {
+        // code here
+        int[] hash = new int[26];
+        for(int i=0;i<s.length();i++){
+            hash[s.charAt(i)-97]++;
+        }
+        char ch = ' ';
+        int occur = 0;
+        for(int i=0;i<26;i++){
+            if(hash[i]>occur){
+                occur = hash[i];
+                ch = (char)(i+'a');
+            }
+        }
+        return ch;
+    }
+}
