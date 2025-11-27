@@ -1,0 +1,10 @@
+class CheckBit {
+    static boolean checkKthBit(int n, int k) {
+        // code here
+        while(k!=0){
+            n = n>>1;
+            k--;
+        }
+        return (n&1)==1;
+    }
+}
