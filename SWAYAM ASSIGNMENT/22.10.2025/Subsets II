@@ -1,0 +1,23 @@
+class Solution {
+    private void find(HashSet<ArrayList<Integer>> ans, ArrayList<Integer> subAns, int[] arr, int i) {
+        if (i == arr.length) {
+            ans.add(new ArrayList<>(subAns)); // make a copy
+            return;
+        }
+
+        // Include arr[i]
+        subAns.add(arr[i]);
+        find(ans, subAns, arr, i + 1);
+
+        // Exclude arr[i]
+        subAns.remove(subAns.size() - 1);
+        find(ans, subAns, arr, i + 1);
+    }
+
+    public ArrayList<ArrayList<Integer>> findSubsets(int[] arr) {
+        Arrays.sort(arr);
+        HashSet<ArrayList<Integer>> ans = new HashSet<>();
+        find(ans, new ArrayList<Integer>(), arr, 0); // specify <Integer>
+        return new ArrayList<>(ans);
+    }
+}
